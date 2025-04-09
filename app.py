@@ -86,6 +86,10 @@ def handle_dialog(res, req):
             res['response']['text'] = 'Я угадал!'
         # если не нашел, то отвечает пользователю
         # 'Первый раз слышу об этом городе.'
+        elif city == 'Пока':
+            res['response']['text'] = \
+                'Было приятно пообщаться! Удачи!'
+            res['response']['end_session'] = True
         else:
             res['response']['text'] = \
                 'Первый раз слышу об этом городе. Попробуй еще разок!'
