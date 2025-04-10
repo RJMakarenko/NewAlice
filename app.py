@@ -76,6 +76,7 @@ def handle_dialog(res, req):
     else:
         # ищем город в сообщение от пользователя
         city = get_city(req)
+        bye_bye = req['request']['original_utterance'].lower()
         # если этот город среди известных нам,
         # то показываем его (выбираем одну из двух картинок случайно)
         if city in cities:
@@ -86,6 +87,9 @@ def handle_dialog(res, req):
             res['response']['text'] = 'Я угадал!'
         # если не нашел, то отвечает пользователю
         # 'Первый раз слышу об этом городе.'
+        elif bye_bye == 'пока':
+            res['response']['text'] = 'Спасибо за игру!! Возвращайтесь!'
+            res['end_session'] = True
         else:
             res['response']['text'] = \
                 'Первый раз слышу об этом городе. Попробуй еще разок!'
